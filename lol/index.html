@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="">
+<style></style>
+
+<title>Document</title>
+</head>
+
+<body>
+
+   <script type="text/javascript">
+      var req = new XMLHttpRequest();
+      req.open("GET", "./json/image_list.json");
+         if( this.readyState == 4 ){
+            console.log(this.response);
+            var data = JSON.parse(this.response);
+            for( var i = 0; i < data.length; i++ ){
+               var div = document.createElement('div');
+               div.setAttribute("class", "image");
+               div.onclick = function(){
+                  this.classList.toggle("image-selected");
+               }
+               var img = document.createElement("img");
+               img.src = data[i];
+               div.appendChild(img);
+               document.body.appendChild(div);
+            }
+         }
+      req.send();
+   </script>
+</body>
+</html>
